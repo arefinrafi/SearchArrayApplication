@@ -1,0 +1,46 @@
+{% extends 'base_accounts.html' %}
+
+{% block container %}
+
+{% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+<form id="form" action="{% url 'handleregister' %}" method="post">
+    {% csrf_token %}
+
+    <h1>Registration</h1>
+
+    <div class="input-control-field">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required>
+        <div class="error"></div>
+    </div>
+    <div class="input-control-field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="text" required>
+        <div class="error"></div>
+    </div>
+    <div class="input-control-field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required>
+        <div class="error"></div>
+    </div>
+    <div class="input-control-field">
+        <label for="password2">Password again</label>
+        <input id="password2" name="password2" type="password" required>
+        <div class="error"></div>
+    </div>
+    <button type="submit">Sign Up</button>
+</form>
+
+{% endblock %}
